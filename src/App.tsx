@@ -1,25 +1,28 @@
+// import React from 'react';
+// import logo from './logo.svg';
 import React from 'react';
-import logo from './logo.svg';
+import { expandingHeatmapTableSampleHeader as header, expandingHeatmapTableSampleRows as tableRows } from '../data/expandingHeatmapTableTestData';
 import './App.css';
+import ExpandingHeatmapTable from './components/ExpandingHeatmapTable';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <ExpandingHeatmapTable
+        header={header}
+        rows={tableRows}
+        onCellSelected={(cell) => {alert (`Selected cell ${cell.id}`)}}
+      />
+      <div>learn react or the default test will be sad at you</div>
+    </React.Fragment>
+    // <div className="App">
+    //   <header className="App-header">
+    //     <img src={logo} className="App-logo" alt="logo" />
+    //     <p>
+    //       Edit <code>src/App.tsx</code> and save to reload.
+    //     </p>
+    //   </header>
+    // </div>
   );
 }
 
