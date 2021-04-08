@@ -1,7 +1,11 @@
-import { render, screen } from '@testing-library/react';
-// import React from 'react';
+import { configure, render, screen } from '@testing-library/react';
+// import { render as erender } from "enzyme";
 import { MemoryRouter } from 'react-router-dom';
 import ExpandingHeatmapTable from './ExpandingHeatmapTable';
+
+configure({
+    testIdAttribute: 'id'
+})
 
 const header = {
     id: 'header',
@@ -166,3 +170,22 @@ test('Renders base expanding heatmap table', () => {
     const cell21 = screen.getByText(/cell 1-2/i)
     expect(cell21).toBeInTheDocument()
 });
+
+// test('Confirm expand/collapse state', () => {
+//     const wrapper = erender(
+//     <MemoryRouter>
+//         <ExpandingHeatmapTable
+//             header={header}
+//             rows={tableRows}
+//             onCellSelected={(cell) => {return undefined}}
+//         />
+//     </MemoryRouter>)
+
+//     const firstRow = wrapper.find(<tr>)[1]
+//     console.log(firstRow)
+//     expect(firstRow).toHaveClass("toprow")
+//     // const secondRow = screen.getByTestId(/data2/i)
+//     // expect(secondRow).toHaveClass("toprow")
+//     // const hiddenRow = screen.queryByTestId(/sub1/i)
+//     // expect(hiddenRow).toBeNull()
+// });

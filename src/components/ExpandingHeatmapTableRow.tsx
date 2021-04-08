@@ -2,12 +2,13 @@ import React, { FunctionComponent, useState } from "react";
 import ExpandingHeatmapTableCell, { CellType, RowToggleCell } from "./ExpandingHeatmapTableCell";
 
 export interface ExpandingHeatmapTableRowType {
-    id: string,
+    id: string
     cells: CellType[]
     subrows: ExpandingHeatmapTableRowType[]
 }
 
 type ExpandingHeatmapTableRowProps = ExpandingHeatmapTableRowType & {
+    selectedCellId: string
     isSubrow: boolean
     cellSelectionHandler: (cell: CellType) => void
 }
@@ -24,13 +25,12 @@ const ExpandingHeatmapTableRow: FunctionComponent<ExpandingHeatmapTableRowProps>
     const [collapsedState, setCollapsedState] = useState<RowState>(hasSubrows ? "Collapsed" : "Empty")
 
     return (
-        <React.Fragment>
-            <tr
+        <React.Fragment key={'wrapper-' + Props.id}>
+            <tr key={"row-key-" + Props.id}
                 className={Props.isSubrow ? "subrow" : "toprow"}
-                key={"row-key-" + Props.id}
             >
                 <RowToggleCell
-                    id={Props.id}
+                    id={Props.id + "-toggleCell"}
                     toggleIsRequired={hasSubrows}
                     rowIsExpanded={collapsedState === "Expanded"}
                     handler={() => {setCollapsedState(toggleRowState(collapsedState))}}
@@ -40,7 +40,7 @@ const ExpandingHeatmapTableRow: FunctionComponent<ExpandingHeatmapTableRowProps>
                         id={cell.id}
                         link={cell.link}
                         text={cell.text}
-                        selected={cell.selected}
+                        selected={cell.id === Props.selectedCellId}
                         rotate={cell.rotate}
                         border_right={cell.border_right}
                         border_top={cell.border_top}
@@ -62,6 +62,7 @@ const ExpandingHeatmapTableRow: FunctionComponent<ExpandingHeatmapTableRowProps>
                         id={row.id}
                         cells={row.cells}
                         subrows={row.subrows}
+                        selectedCellId={Props.selectedCellId}
                         isSubrow={true}
                         cellSelectionHandler={Props.cellSelectionHandler}
                     />

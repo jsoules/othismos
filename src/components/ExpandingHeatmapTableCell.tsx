@@ -5,7 +5,6 @@ export interface CellType {
     id: string,
     link?: string,
     text: string | any,
-    selected?: boolean,
     rotate?: boolean,
     border_right?: boolean,
     border_top?: boolean,
@@ -19,8 +18,9 @@ export interface CellType {
 }
 
 type CellProps = CellType & {
-    hide_content: boolean,
-    handleCellSelected: (cell: CellType) => void, // is this the best way to do this???
+    hide_content: boolean
+    selected?: boolean
+    handleCellSelected: (cell: CellType) => void
 }
 
 
