@@ -11,6 +11,9 @@
 # production
 /build
 
+# Large eye-reference files
+/data
+
 # misc
 .DS_Store
 .env.local
