@@ -6,19 +6,19 @@ export interface CellType {
     link?: string,
     text: string | any,
     rotate?: boolean,
-    border_right?: boolean,
-    border_top?: boolean,
+    borderRight?: boolean,
+    borderTop?: boolean,
     selectable?: boolean,
     spacer?: boolean,
-    expand_id_on_click?: string,
-    cell_wrap?: boolean
+    idToExpandOnClick?: string,
+    cellWrap?: boolean
     color?: string,
     bgcolor?: string,
-    text_align?: any, // can't seem to find the actual definition anywhere
+    textAlign?: any, // can't seem to find the actual definition anywhere
 }
 
 type CellProps = CellType & {
-    hide_content: boolean
+    hideContent: boolean
     selected?: boolean
     handleCellSelected: (cell: CellType) => void
 }
@@ -65,14 +65,14 @@ const ExpandingHeatmapTableCell: FunctionComponent<CellProps> = (Props: CellProp
     const classList: string[] = useMemo(() => {
         const list: string[] = []
         // find a neater way to do this?
-        if (Props.selected)           { list.push("selected")     }
-        if (Props.rotate)             { list.push("rotate")       }
-        if (Props.border_right)       { list.push("border_right") }
-        if (Props.border_top)         { list.push("border_top")   }
-        if (Props.selectable)         { list.push("selectable")   }
-        if (Props.spacer)             { list.push("spacer")       }
-        if (Props.expand_id_on_click) { list.push("expandable")   }
-        if (Props.cell_wrap)          { list.push("cell-wrap")    }
+        if (Props.selected)          { list.push("selected")     }
+        if (Props.rotate)            { list.push("rotate")       }
+        if (Props.borderRight)       { list.push("borderRight")  }
+        if (Props.borderTop)         { list.push("border_top")   } // this might not exist
+        if (Props.selectable)        { list.push("selectable")   }
+        if (Props.spacer)            { list.push("spacer")       }
+        if (Props.idToExpandOnClick) { list.push("expandable")   }
+        if (Props.cellWrap)          { list.push("cellWrap")     }
         return list
     }, [Props])
 
@@ -80,18 +80,18 @@ const ExpandingHeatmapTableCell: FunctionComponent<CellProps> = (Props: CellProp
     const cellStyling: CSSProperties = useMemo(() => ({
         color:            Props.color      || "black",
         backgroundColor:  Props.bgcolor    || "white",
-        textAlign:        Props.text_align || "left"
-    }), [Props.color, Props.bgcolor, Props.text_align])
+        textAlign:        Props.textAlign || "left"
+    }), [Props.color, Props.bgcolor, Props.textAlign])
 
     return (
         <td
             onClick={() => Props.handleCellSelected(Props)}
             className={classList.join(" ")}
-            style = {Props.hide_content ? {} : cellStyling}
+            style = {Props.hideContent ? {} : cellStyling}
             key={Props.id}
         >
             <div>
-                { Props.hide_content ? <span /> : contentSpan }
+                { Props.hideContent ? <span /> : contentSpan }
             </div>
         </td>
     )
