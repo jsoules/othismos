@@ -1491,7 +1491,7 @@ tr.toprow > :nth-child(2) {
   border-left: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-.expandingheatmaptable td.cell-wrap {
+.expandingheatmaptable td.cellWrap {
   word-break: break-all;
 }
 
@@ -1505,7 +1505,7 @@ tr.toprow > :nth-child(2) {
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
-td.border_right {
+td.borderRight {
   max-width: calc(25vw / 10);
 }
 

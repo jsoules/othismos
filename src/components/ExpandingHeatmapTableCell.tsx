@@ -6,19 +6,19 @@ export interface CellType {
     link?: string,
     text: string | any,
     rotate?: boolean,
-    border_right?: boolean,
-    border_top?: boolean,
+    borderRight?: boolean,
+    borderTop?: boolean,
     selectable?: boolean,
     spacer?: boolean,
-    expand_id_on_click?: string,
-    cell_wrap?: boolean
+    idToExpandOnClick?: string,
+    cellWrap?: boolean
     color?: string,
     bgcolor?: string,
-    text_align?: any, // can't seem to find the actual definition anywhere
+    textAlign?: any, // can't seem to find the actual definition anywhere
 }
 
 type CellProps = CellType & {
-    hide_content: boolean
+    hideContent: boolean
     selected?: boolean
     handleCellSelected: (cell: CellType) => void
 }
@@ -64,31 +64,31 @@ const ExpandingHeatmapTableCell: FunctionComponent<CellProps> = (Props: CellProp
                                     : <span>{Props.text}</span>
     const classList: string[] = []
     // find a neater way to do this?
-    if (Props.selected)           { classList.push("selected")     }
-    if (Props.rotate)             { classList.push("rotate")       }
-    if (Props.border_right)       { classList.push("border_right") }
-    if (Props.border_top)         { classList.push("border_top")   }
-    if (Props.selectable)         { classList.push("selectable")   }
-    if (Props.spacer)             { classList.push("spacer")       }
-    if (Props.expand_id_on_click) { classList.push("expandable")   }
-    if (Props.cell_wrap)          { classList.push("cell-wrap")    }
+    if (Props.selected)          { classList.push("selected")     }
+    if (Props.rotate)            { classList.push("rotate")       }
+    if (Props.borderRight)       { classList.push("borderRight")  }
+    if (Props.borderTop)         { classList.push("border_top")   } // this might not exist
+    if (Props.selectable)        { classList.push("selectable")   }
+    if (Props.spacer)            { classList.push("spacer")       }
+    if (Props.idToExpandOnClick) { classList.push("expandable")   }
+    if (Props.cellWrap)          { classList.push("cellWrap")     }
 
     // TODO: Look up how to do this more elegantly
     const cellStyling: CSSProperties = {
         color:            Props.color      || "black",
         backgroundColor:  Props.bgcolor    || "white",
-        textAlign:        Props.text_align || "left"
+        textAlign:        Props.textAlign  || "left"
     }
 
     return (
         <td
             onClick={() => Props.handleCellSelected(Props)}
             className={classList.join(" ")}
-            style = {Props.hide_content ? {} : cellStyling}
+            style = {Props.hideContent ? {} : cellStyling}
             key={Props.id}
         >
             <div>
-                { Props.hide_content ? <span /> : contentSpan }
+                { Props.hideContent ? <span /> : contentSpan }
             </div>
         </td>
     )

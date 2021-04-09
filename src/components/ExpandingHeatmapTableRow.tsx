@@ -42,16 +42,16 @@ const ExpandingHeatmapTableRow: FunctionComponent<ExpandingHeatmapTableRowProps>
                         text={cell.text}
                         selected={cell.id === Props.selectedCellId}
                         rotate={cell.rotate}
-                        border_right={cell.border_right}
-                        border_top={cell.border_top}
+                        borderRight={cell.borderRight}
+                        borderTop={cell.borderTop}
                         selectable={cell.selectable}
                         spacer={cell.spacer}
-                        expand_id_on_click={cell.expand_id_on_click}
-                        cell_wrap={cell.cell_wrap}
+                        idToExpandOnClick={cell.idToExpandOnClick}
+                        cellWrap={cell.cellWrap}
                         color={cell.color}
                         bgcolor={cell.bgcolor}
-                        text_align={cell.text_align}
-                        hide_content={collapsedState === "Expanded" && i !== 0}
+                        textAlign={cell.textAlign}
+                        hideContent={collapsedState === "Expanded" && i !== 0}
                         handleCellSelected={Props.cellSelectionHandler}
                     />
                 ))}
