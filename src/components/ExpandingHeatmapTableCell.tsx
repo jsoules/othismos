@@ -1,4 +1,4 @@
-import React, { CSSProperties, FunctionComponent } from 'react';
+import React, { CSSProperties, FunctionComponent, useMemo } from 'react';
 import { Link } from "react-router-dom";
 
 export interface CellType {
@@ -62,23 +62,26 @@ export const RowToggleCell: FunctionComponent<RowToggleProps> = (Props: RowToggl
 const ExpandingHeatmapTableCell: FunctionComponent<CellProps> = (Props: CellProps) => {
     const contentSpan = Props.link  ? <Link to={Props.link}>{Props.text}</Link>
                                     : <span>{Props.text}</span>
-    const classList: string[] = []
-    // find a neater way to do this?
-    if (Props.selected)           { classList.push("selected")     }
-    if (Props.rotate)             { classList.push("rotate")       }
-    if (Props.border_right)       { classList.push("border_right") }
-    if (Props.border_top)         { classList.push("border_top")   }
-    if (Props.selectable)         { classList.push("selectable")   }
-    if (Props.spacer)             { classList.push("spacer")       }
-    if (Props.expand_id_on_click) { classList.push("expandable")   }
-    if (Props.cell_wrap)          { classList.push("cell-wrap")    }
+    const classList: string[] = useMemo(() => {
+        const list: string[] = []
+        // find a neater way to do this?
+        if (Props.selected)           { list.push("selected")     }
+        if (Props.rotate)             { list.push("rotate")       }
+        if (Props.border_right)       { list.push("border_right") }
+        if (Props.border_top)         { list.push("border_top")   }
+        if (Props.selectable)         { list.push("selectable")   }
+        if (Props.spacer)             { list.push("spacer")       }
+        if (Props.expand_id_on_click) { list.push("expandable")   }
+        if (Props.cell_wrap)          { list.push("cell-wrap")    }
+        return list
+    }, [Props])
 
     // TODO: Look up how to do this more elegantly
-    const cellStyling: CSSProperties = {
+    const cellStyling: CSSProperties = useMemo(() => ({
         color:            Props.color      || "black",
         backgroundColor:  Props.bgcolor    || "white",
         textAlign:        Props.text_align || "left"
-    }
+    }), [Props.color, Props.bgcolor, Props.text_align])
 
     return (
         <td
