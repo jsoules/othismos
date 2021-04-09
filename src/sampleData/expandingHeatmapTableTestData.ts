@@ -1,4 +1,6 @@
-export const expandingHeatmapTableSampleHeader = {
+import { ExpandingHeatmapTableRowType } from "../components/ExpandingHeatmapTableRow"
+
+export const expandingHeatmapTableSampleHeader: ExpandingHeatmapTableRowType = {
     id: 'header',
     cells: [
         {
@@ -18,18 +20,33 @@ export const expandingHeatmapTableSampleHeader = {
             link: '/algorithms',
             text: 'column 2',
             rotate: true
-        }
+        },
+        ...[3, 4, 5, 6].map(n => ({
+            id: `header-cell${n}`,
+            link: '/algorithms',
+            text: `column ${n}`,
+            rotate: true
+        }))
     ],
     subrows: [],
-    isSubrow: false,
-    cellSelectionHandler: () => {},
-    index: -1
+    // isSubrow: false,
+    // cellSelectionHandler: () => {},
+    // index: -1
 }
 
-export const expandingHeatmapTableSampleRows = [
+const col1 = 'rgb(138, 191, 221)'
+
+export const expandingHeatmapTableSampleRows: ExpandingHeatmapTableRowType[] = [
     {
         id: 'data1',
         cells: [
+            {
+                id: '1-0',
+                text_align: 'center',
+                text: 'cell 1-0',
+                color: 'white',
+                bgcolor: 'rgb(8, 53, 115)'
+            },
             {
                 id: '1-1',
                 text_align: 'center',
@@ -44,11 +61,12 @@ export const expandingHeatmapTableSampleRows = [
                 color: 'black',
                 bgcolor: 'rgb(138, 191, 221)'
             },
-            {
-                id: '1-3',
+            ...[3, 4, 5, 6].map(n => ({
+                id: `1-${n}`,
                 text_align: 'center',
-                text: 'cell 1-3'
-            }
+                text: `cell 1-${n}`,
+                bgcolor: 'rgb(138, 191, 221)'
+            }))
         ],
         subrows: []
     },
@@ -56,31 +74,48 @@ export const expandingHeatmapTableSampleRows = [
         id: 'data2',
         cells: [
             {
+                id: '2-0',
+                text: 'cell 2-0',
+                link: '',
+                border_right: true,
+                selectable: true,
+                bgcolor: 'rgb(138, 191, 221)'
+            },
+            {
                 id: '2-1',
                 text: 'cell 2-1',
                 link: '',
                 border_right: true,
-                selectable: true
+                selectable: true,
+                bgcolor: 'rgb(138, 191, 221)'
             },
             {
                 id: '2-2',
                 text: 'cell 2-2',
                 link: '',
                 border_right: true,
-                selectable: true
+                selectable: true,
+                bgcolor: col1
             },
-            {
-                id: '2-3',
-                text: 'cell 2-3',
-                link: '',
-                border_right: true,
-                selectable: true
-            }
+            ...[3, 4, 5, 6].map(n => ({
+                id: `2-${n}`,
+                text_align: 'center',
+                text: `cell 2-${n}`,
+                bgcolor: col1
+            }))
         ],
         subrows: [
             {
                 id: 'sub1',
                 cells: [
+                    {
+                        id: '2a-1',
+                        text: 'cell 2a-0',
+                        link: '',
+                        text_align: 'center',
+                        border_right: true,
+                        selectable: true
+                    },
                     {
                         id: '2a-1',
                         text: 'cell 2a-1',
@@ -90,7 +125,7 @@ export const expandingHeatmapTableSampleRows = [
                         selectable: true,
                         color: 'white',
                         bgcolor: 'rgb(8, 53, 115)'
-                            },
+                    },
                     {
                         id: '2a-2',
                         text: 'cell 2a-2',
@@ -101,23 +136,99 @@ export const expandingHeatmapTableSampleRows = [
                         color: 'black',
                         bgcolor: 'rgb(138, 191, 221)'
                     },
-                    {
-                        id: '2a-3',
-                        text: 'cell 2a-3',
+                    ...[3, 4, 5, 6].map(n => ({
+                        id: `2a-${n}`,
+                        text: `cell 2a-${n}`,
                         link: '',
                         text_align: 'center',
                         border_right: true,
-                        selectable: true
-                    }
+                        selectable: true,
+                        bgcolor: col1
+                    }))
                 ],
                 subrows: []
             },
             {
                 id: 'sub2',
                 cells: [
+                    ...[1, 2, 3, 4, 5, 6].map(n => ({
+                        id: `2b-${n}`,
+                        text: `cell 2b-${n}`,
+                        link: '',
+                        text_align: 'center',
+                        border_right: true,
+                        selectable: true,
+                        bgcolor: col1
+                    }))
+                ],
+                subrows: []
+            },
+            ...[3, 4, 5].map(sr => ({
+                id: `sub${sr}`,
+                cells: [
+                    ...[1, 2, 3, 4, 5, 6].map(n => ({
+                        id: `${sr}b-${n}`,
+                        text: `cell ${sr}b-${n}`,
+                        link: '',
+                        text_align: 'center',
+                        border_right: true,
+                        selectable: true,
+                        bgcolor: col1
+                    }))
+                ],
+                subrows: []
+            }))
+        ]
+    },
+    ...[3, 4, 5, 6, 7].map(r => ({
+        id: `data${r}`,
+        cells: [
+            {
+                id: `${r}-0`,
+                text: `cell ${r}-0`,
+                link: '',
+                border_right: true,
+                selectable: true,
+                bgcolor: col1
+            },
+            {
+                id: `${r}-1`,
+                text: `cell ${r}-1`,
+                link: '',
+                border_right: true,
+                selectable: true,
+                bgcolor: col1
+            },
+            {
+                id: `${r}-2`,
+                text: `cell ${r}-2`,
+                link: '',
+                border_right: true,
+                selectable: true,
+                bgcolor: col1
+            },
+            ...[3, 4, 5, 6].map(n => ({
+                id: `${r}-${n}`,
+                text_align: 'center',
+                text: `cell ${r}-${n}`,
+                bgcolor: col1
+            }))
+        ],
+        subrows: [
+            {
+                id: `${r}-sub1`,
+                cells: [
                     {
-                        id: '2b-1',
-                        text: 'cell 2b-1',
+                        id: `${r}a-0`,
+                        text: `cell ${r}a-0`,
+                        link: '',
+                        text_align: 'center',
+                        border_right: true,
+                        selectable: false
+                    },
+                    {
+                        id: `${r}a-1`,
+                        text: `cell ${r}a-1`,
                         link: '',
                         text_align: 'center',
                         border_right: true,
@@ -126,8 +237,8 @@ export const expandingHeatmapTableSampleRows = [
                         bgcolor: 'rgb(8, 53, 115)'
                     },
                     {
-                        id: '2b-2',
-                        text: 'cell 2b-2',
+                        id: `${r}a-2`,
+                        text: `cell ${r}a-2`,
                         link: '',
                         text_align: 'center',
                         border_right: true,
@@ -135,17 +246,33 @@ export const expandingHeatmapTableSampleRows = [
                         color: 'black',
                         bgcolor: 'rgb(138, 191, 221)'
                     },
-                    {
-                        id: '2b-3',
-                        text: 'cell 2b-3',
+                    ...[3, 4, 5, 6].map(n => ({
+                        id: `${r}a-${n}`,
+                        text: `cell ${r}a-${n}`,
                         link: '',
                         text_align: 'center',
                         border_right: true,
-                        selectable: true
-                    }
+                        selectable: true,
+                        bgcolor: col1
+                    }))
+                ],
+                subrows: []
+            },
+            {
+                id: `${r}-sub2`,
+                cells: [
+                    ...[0, 1, 2, 3, 4, 5, 6].map(n => ({
+                        id: `${r}b-${n}`,
+                        text: `cell ${r}b-${n}`,
+                        link: '',
+                        text_align: 'center',
+                        border_right: true,
+                        selectable: true,
+                        bgcolor: col1
+                    }))
                 ],
                 subrows: []
             }
         ]
-    }
+    }))
 ]
