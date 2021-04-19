@@ -1,26 +1,32 @@
-import { configure, render, screen } from '@testing-library/react';
+import { configure, render, screen } from "@testing-library/react"
 // import { render as erender } from "enzyme";
-import { MemoryRouter } from 'react-router-dom';
-import { expandingHeatmapTableSampleHeader as header, expandingHeatmapTableSampleRows as tableRows } from '../sampleData/expandingHeatmapTableTestData';
-import ExpandingHeatmapTable from './ExpandingHeatmapTable';
+import { MemoryRouter } from "react-router-dom"
+import {
+  expandingHeatmapTableSampleHeader as header,
+  expandingHeatmapTableSampleRows as tableRows
+} from "../sampleData/expandingHeatmapTableTestData"
+import ExpandingHeatmapTable from "./ExpandingHeatmapTable"
 
 configure({
-    testIdAttribute: 'id'
+  testIdAttribute: "id"
 })
 
-
-
-test('Renders base expanding heatmap table', () => {
-    render(<ExpandingHeatmapTable
-            header={header}
-            rows={tableRows}
-            onCellSelected={(cell) => {return undefined}}
-          />, { wrapper: MemoryRouter })
-    const columnLabel = screen.getByText(/column 1/i)
-    expect(columnLabel).toBeInTheDocument()
-    const cell21 = screen.getByText(/cell 1-2/i)
-    expect(cell21).toBeInTheDocument()
-});
+test("Renders base expanding heatmap table", () => {
+  render(
+    <ExpandingHeatmapTable
+      header={header}
+      rows={tableRows}
+      onCellSelected={(cell) => {
+        return undefined
+      }}
+    />,
+    { wrapper: MemoryRouter }
+  )
+  const columnLabel = screen.getByText(/HerdingSpikes2/i)
+  expect(columnLabel).toBeInTheDocument()
+  const cellPairedBoyden = screen.getByText(/PAIRED_BOYDEN/i)
+  expect(cellPairedBoyden).toBeInTheDocument()
+})
 
 // Test is currently broken while I figure out how to actually write it
 // test('Confirm expand/collapse state', () => {
