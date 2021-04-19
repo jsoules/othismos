@@ -1,266 +1,216 @@
-import { ExpandingHeatmapTableRowType } from "../components/ExpandingHeatmapTableRow"
+import { ExpandingHeatmapTableRowType } from "../components/ExpandingHeatmapTableRow";
+
+const sorters = [
+  "HerdingSpikes2",
+  "IronClust",
+  "JRClust",
+  "Kilosort",
+  "Kilosort2",
+  "Klusta",
+  "MountainSort4",
+  "SpykingCircus",
+  "Tridesclous",
+  "Waveclus"
+];
 
 export const expandingHeatmapTableSampleHeader: ExpandingHeatmapTableRowType = {
-    id: 'header',
-    cells: [
-        {
-            id: 'header-leftcolumn',
-            link: '',
-            text: '',
-            rotate: true,
-        },
-        ...[1, 2, 3, 4, 5, 6].map(n => ({
-            id: `header-cell${n}`,
-            link: '/algorithms',
-            text: `column ${n}`,
-            rotate: true
-        }))
-    ],
-    subrows: [],
-    // isSubrow: false,
-    // cellSelectionHandler: () => {},
-    // index: -1
-}
+  id: "header",
+  cells: [
+    {
+      id: "header-leftcolumn",
+      link: "",
+      text: "",
+      rotate: true
+    },
+    ...sorters.map((algName) => ({
+      id: `header-cell-${algName}`,
+      link: "/algorithms",
+      text: `${algName}`,
+      rotate: true
+    }))
+  ],
+  subrows: []
+  // isSubrow: false,
+  // cellSelectionHandler: () => {},
+  // index: -1
+};
 
-const col1 = 'rgb(138, 191, 221)'
+const col1 = "rgb(138, 191, 221)";
+
+const STUDIES: {
+  name: string;
+  results: (number | undefined)[];
+  subRows: {
+    name: string;
+    results: (number | undefined)[];
+  }[];
+}[] = [
+  {
+    name: "PAIRED_BOYDEN",
+    results: [
+      undefined,
+      0.53,
+      0.58,
+      0.34,
+      0.65,
+      0.32,
+      0.53,
+      0.64,
+      0.33,
+      undefined
+    ],
+    subRows: [
+      {
+        name: "paired_boyden32c",
+        results: [
+          undefined,
+          0.53,
+          0.58,
+          0.34,
+          0.65,
+          0.32,
+          0.53,
+          0.64,
+          0.33,
+          undefined
+        ]
+      }
+    ]
+  },
+  {
+    name: "PAIRED_CRCNS_HC1",
+    results: [
+      undefined,
+      0.75,
+      0.64,
+      0.5,
+      0.75,
+      0.67,
+      0.76,
+      0.78,
+      0.73,
+      undefined
+    ],
+    subRows: [
+      {
+        name: "paired_crcns",
+        results: [
+          undefined,
+          0.75,
+          0.64,
+          0.5,
+          0.75,
+          0.67,
+          0.76,
+          0.78,
+          0.73,
+          undefined
+        ]
+      }
+    ]
+  },
+  {
+    name: "SYNTH_BIONET",
+    results: [
+      undefined,
+      0.86,
+      0.74,
+      0.81,
+      0.77,
+      undefined,
+      0.73,
+      0.68,
+      0.54,
+      undefined
+    ],
+    subRows: [
+      {
+        name: "synth_bionet_static",
+        results: [
+          undefined,
+          0.87,
+          0.85,
+          0.83,
+          0.8,
+          undefined,
+          0.77,
+          0.75,
+          0.58,
+          undefined
+        ]
+      },
+      {
+        name: "synth_bionet_drift",
+        results: [
+          undefined,
+          0.86,
+          0.68,
+          0.79,
+          0.79,
+          undefined,
+          0.71,
+          0.65,
+          0.52,
+          undefined
+        ]
+      },
+      {
+        name: "synth_bionet_shuffle",
+        results: [
+          undefined,
+          0.84,
+          0.69,
+          0.8,
+          0.72,
+          undefined,
+          0.72,
+          0.6,
+          0.52,
+          undefined
+        ]
+      }
+    ]
+  }
+];
 
 export const expandingHeatmapTableSampleRows: ExpandingHeatmapTableRowType[] = [
-    {
-        id: 'data1',
-        cells: [
-            {
-                id: '1-0',
-                textAlign: 'center',
-                text: 'cell 1-0',
-                color: 'white',
-                bgcolor: 'rgb(8, 53, 115)'
-            },
-            {
-                id: '1-1',
-                textAlign: 'center',
-                text: 'cell 1-1',
-                color: 'white',
-                bgcolor: 'rgb(8, 53, 115)'
-            },
-            {
-                id: '1-2',
-                textAlign: 'center',
-                text: 'cell 1-2',
-                color: 'black',
-                bgcolor: 'rgb(138, 191, 221)'
-            },
-            ...[3, 4, 5, 6].map(n => ({
-                id: `1-${n}`,
-                textAlign: 'center',
-                text: `cell 1-${n}`,
-                bgcolor: 'rgb(138, 191, 221)'
-            }))
-        ],
-        subrows: []
-    },
-    {
-        id: 'data2',
-        cells: [
-            {
-                id: '2-0',
-                text: 'cell 2-0',
-                link: '',
-                borderRight: true,
-                selectable: true,
-                bgcolor: 'rgb(138, 191, 221)'
-            },
-            {
-                id: '2-1',
-                text: 'cell 2-1',
-                link: '',
-                borderRight: true,
-                selectable: true,
-                bgcolor: 'rgb(138, 191, 221)'
-            },
-            {
-                id: '2-2',
-                text: 'cell 2-2',
-                link: '',
-                borderRight: true,
-                selectable: true,
-                bgcolor: col1
-            },
-            ...[3, 4, 5, 6].map(n => ({
-                id: `2-${n}`,
-                textAlign: 'center',
-                text: `cell 2-${n}`,
-                bgcolor: col1
-            }))
-        ],
-        subrows: [
-            {
-                id: 'sub1',
-                cells: [
-                    {
-                        id: '2a-1',
-                        text: 'cell 2a-0',
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true
-                    },
-                    {
-                        id: '2a-1',
-                        text: 'cell 2a-1',
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        color: 'white',
-                        bgcolor: 'rgb(8, 53, 115)'
-                    },
-                    {
-                        id: '2a-2',
-                        text: 'cell 2a-2',
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        color: 'black',
-                        bgcolor: col1
-                    },
-                    ...[3, 4, 5, 6].map(n => ({
-                        id: `2a-${n}`,
-                        text: `cell 2a-${n}`,
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        bgcolor: col1
-                    }))
-                ],
-                subrows: []
-            },
-            {
-                id: 'sub2',
-                cells: [
-                    ...[1, 2, 3, 4, 5, 6].map(n => ({
-                        id: `2b-${n}`,
-                        text: `cell 2b-${n}`,
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        bgcolor: col1
-                    }))
-                ],
-                subrows: []
-            },
-            ...[3, 4, 5].map(sr => ({
-                id: `sub${sr}`,
-                cells: [
-                    ...[1, 2, 3, 4, 5, 6].map(n => ({
-                        id: `${sr}b-${n}`,
-                        text: `cell ${sr}b-${n}`,
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        bgcolor: col1
-                    }))
-                ],
-                subrows: []
-            }))
-        ]
-    },
-    ...[3, 4, 5, 6, 7].map(r => ({
-        id: `data${r}`,
-        cells: [
-            {
-                id: `${r}-0`,
-                text: `cell ${r}-0`,
-                link: '',
-                borderRight: true,
-                selectable: true,
-                bgcolor: col1
-            },
-            {
-                id: `${r}-1`,
-                text: `cell ${r}-1`,
-                link: '',
-                borderRight: true,
-                selectable: true,
-                bgcolor: col1
-            },
-            {
-                id: `${r}-2`,
-                text: `cell ${r}-2`,
-                link: '',
-                borderRight: true,
-                selectable: true,
-                bgcolor: col1
-            },
-            ...[3, 4, 5, 6].map(n => ({
-                id: `${r}-${n}`,
-                textAlign: 'center',
-                text: `cell ${r}-${n}`,
-                bgcolor: col1
-            }))
-        ],
-        subrows: [
-            {
-                id: `${r}-sub1`,
-                cells: [
-                    {
-                        id: `${r}a-0`,
-                        text: `cell ${r}a-0`,
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: false
-                    },
-                    {
-                        id: `${r}a-1`,
-                        text: `cell ${r}a-1`,
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        color: 'white',
-                        bgcolor: 'rgb(8, 53, 115)'
-                    },
-                    {
-                        id: `${r}a-2`,
-                        text: `cell ${r}a-2`,
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        color: 'black',
-                        bgcolor: 'rgb(138, 191, 221)'
-                    },
-                    ...[3, 4, 5, 6].map(n => ({
-                        id: `${r}a-${n}`,
-                        text: `cell ${r}a-${n}`,
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        bgcolor: col1
-                    }))
-                ],
-                subrows: []
-            },
-            {
-                id: `${r}-sub2`,
-                cells: [
-                    ...[0, 1, 2, 3, 4, 5, 6].map(n => ({
-                        id: `${r}b-${n}`,
-                        text: `cell ${r}b-${n}`,
-                        link: '',
-                        textAlign: 'center',
-                        borderRight: true,
-                        selectable: true,
-                        bgcolor: col1
-                    }))
-                ],
-                subrows: []
-            }
-        ]
+  ...STUDIES.map((STUDY) => ({
+    id: STUDY.name,
+    cells: [
+      {
+        id: "left",
+        textAlign: "right",
+        text: STUDY.name,
+        color: "black",
+        bgcolor: "white"
+      },
+      ...STUDY.results.map((num, ii) => ({
+        id: "result-" + ii,
+        textAlign: "center",
+        text: num !== undefined ? `${num}` : "",
+        color: "black",
+        bgcolor: "white"
+      }))
+    ],
+    subrows: STUDY.subRows.map((sr) => ({
+      id: sr.name,
+      cells: [
+        {
+          id: "left",
+          textAlign: "right",
+          text: sr.name,
+          color: "black",
+          bgcolor: "white"
+        },
+        ...sr.results.map((num, ii) => ({
+          id: "result-" + ii,
+          textAlign: "center",
+          text: num !== undefined ? `${num}` : "",
+          color: "black",
+          bgcolor: "white"
+        }))
+      ],
+      subrows: []
     }))
-]
+  }))
+];
