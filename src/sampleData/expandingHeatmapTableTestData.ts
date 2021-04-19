@@ -1,4 +1,4 @@
-import { ExpandingHeatmapTableRowType } from "../components/ExpandingHeatmapTableRow";
+import { ExpandingHeatmapTableRowType } from "../components/ExpandingHeatmapTableRow"
 
 const sorters = [
   "HerdingSpikes2",
@@ -11,7 +11,7 @@ const sorters = [
   "SpykingCircus",
   "Tridesclous",
   "Waveclus"
-];
+]
 
 export const expandingHeatmapTableSampleHeader: ExpandingHeatmapTableRowType = {
   id: "header",
@@ -33,17 +33,17 @@ export const expandingHeatmapTableSampleHeader: ExpandingHeatmapTableRowType = {
   // isSubrow: false,
   // cellSelectionHandler: () => {},
   // index: -1
-};
+}
 
-const col1 = "rgb(138, 191, 221)";
+const col1 = "rgb(138, 191, 221)"
 
 const STUDIES: {
-  name: string;
-  results: (number | undefined)[];
+  name: string
+  results: (number | undefined)[]
   subRows: {
-    name: string;
-    results: (number | undefined)[];
-  }[];
+    name: string
+    results: (number | undefined)[]
+  }[]
 }[] = [
   {
     name: "PAIRED_BOYDEN",
@@ -171,7 +171,7 @@ const STUDIES: {
       }
     ]
   }
-];
+]
 
 export const expandingHeatmapTableSampleRows: ExpandingHeatmapTableRowType[] = [
   ...STUDIES.map((STUDY) => ({
@@ -213,4 +213,4 @@ export const expandingHeatmapTableSampleRows: ExpandingHeatmapTableRowType[] = [
       subrows: []
     }))
   }))
-];
+]
