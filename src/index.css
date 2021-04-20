@@ -29,7 +29,7 @@ html {
 }
 body {
   margin: 0;
-  padding: 5;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
