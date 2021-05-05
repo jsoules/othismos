@@ -1,4 +1,4 @@
-import React, { CSSProperties, FunctionComponent } from 'react';
+import React, { CSSProperties, FunctionComponent, useMemo } from 'react';
 import { Link } from "react-router-dom";
 
 export interface CellType {
@@ -62,23 +62,26 @@ export const RowToggleCell: FunctionComponent<RowToggleProps> = (Props: RowToggl
 const ExpandingHeatmapTableCell: FunctionComponent<CellProps> = (Props: CellProps) => {
     const contentSpan = Props.link  ? <Link to={Props.link}>{Props.text}</Link>
                                     : <span>{Props.text}</span>
-    const classList: string[] = []
-    // find a neater way to do this?
-    if (Props.selected)          { classList.push("selected")     }
-    if (Props.rotate)            { classList.push("rotate")       }
-    if (Props.borderRight)       { classList.push("borderRight")  }
-    if (Props.borderTop)         { classList.push("border_top")   } // this might not exist
-    if (Props.selectable)        { classList.push("selectable")   }
-    if (Props.spacer)            { classList.push("spacer")       }
-    if (Props.idToExpandOnClick) { classList.push("expandable")   }
-    if (Props.cellWrap)          { classList.push("cellWrap")     }
+    const classList: string[] = useMemo(() => {
+        const list: string[] = []
+        // find a neater way to do this?
+        if (Props.selected)          { list.push("selected")     }
+        if (Props.rotate)            { list.push("rotate")       }
+        if (Props.borderRight)       { list.push("borderRight")  }
+        if (Props.borderTop)         { list.push("border_top")   } // this might not exist
+        if (Props.selectable)        { list.push("selectable")   }
+        if (Props.spacer)            { list.push("spacer")       }
+        if (Props.idToExpandOnClick) { list.push("expandable")   }
+        if (Props.cellWrap)          { list.push("cellWrap")     }
+        return list
+    }, [Props])
 
     // TODO: Look up how to do this more elegantly
-    const cellStyling: CSSProperties = {
+    const cellStyling: CSSProperties = useMemo(() => ({
         color:            Props.color      || "black",
         backgroundColor:  Props.bgcolor    || "white",
-        textAlign:        Props.textAlign  || "left"
-    }
+        textAlign:        Props.textAlign || "left"
+    }), [Props.color, Props.bgcolor, Props.textAlign])
 
     return (
         <td
