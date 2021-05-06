@@ -11,7 +11,7 @@ export type ModeInfo = {
 export interface SliderProps {
     format: FormatType
     metric: MetricType
-    value: number
+    cutoffValue: number
     useColumnFormat?: boolean
     onValueChange: () => void
 }
@@ -31,17 +31,21 @@ export interface ModeProps {
     onFormatChange: (e: string) => void
 }
 
-export interface HeatmapConfiguration {
-    format: FormatType
-    metric: MetricType
-    cutoffValue: number
-    imputeMissingValues?: boolean
-    useColumnFormat?: boolean
-    onFormatChange: (e: string) => void // TODO: NAME?
-    onMetricChange: () => void // TODO: DOUBLE-CHECK
-    onValueChange: () => void
-    onImputeMissingValuesChange: (value: boolean) => void
-}
+// Will be useful for the control panel component
+export type HeatmapConfiguration = SliderProps & MetricProps & ModeProps
+
+// export interface HeatmapConfiguration {
+//     format: FormatType
+//     metric: MetricType
+//     cutoffValue: number
+//     imputeMissingValues?: boolean
+//     showCPU?: boolean
+//     useColumnFormat?: boolean
+//     onFormatChange: (e: string) => void // TODO: NAME?
+//     onMetricChange: () => void // TODO: DOUBLE-CHECK
+//     onValueChange: () => void
+//     onImputeMissingValuesChange: (value: boolean) => void
+// }
 
 export const ConfigMetrics: { [key in MetricType]: string } = {
     'accuracy' : " balances precision and recall",

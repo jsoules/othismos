@@ -7,7 +7,7 @@ describe('Basic rendering tests', () => {
             <SliderCard
                 format={'average'}
                 metric={'accuracy'}
-                value={8}
+                cutoffValue={8}
                 onValueChange={() => {}}
             />
         )
@@ -22,7 +22,7 @@ describe('Basic rendering tests', () => {
             <SliderCard
                 format={'count'}
                 metric={'accuracy'}
-                value={8}
+                cutoffValue={8}
                 onValueChange={() => {}}
             />
         )
@@ -35,7 +35,7 @@ describe('Basic rendering tests', () => {
             <SliderCard
                 format={'count'}
                 metric={'accuracy'}
-                value={8}
+                cutoffValue={8}
                 useColumnFormat={true}
                 onValueChange={() => {}}
             />
@@ -48,7 +48,7 @@ describe('Basic rendering tests', () => {
             <SliderCard
                 format={'count'}
                 metric={'accuracy'}
-                value={8}
+                cutoffValue={8}
                 onValueChange={() => {}}
             />
         )

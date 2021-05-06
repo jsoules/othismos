@@ -30,7 +30,7 @@ const SliderCard: FunctionComponent<SliderProps> = (Props: SliderProps) => {
             <div className="content">
                 <div className="card__label">
                     <p>
-                        {getSliderLabel(Props.format, Props.metric)}: <strong>{Props.value}</strong>
+                        {getSliderLabel(Props.format, Props.metric)}: <strong>{Props.cutoffValue}</strong>
                     </p>
                 </div>
                 <div className="card__footer">
@@ -39,7 +39,7 @@ const SliderCard: FunctionComponent<SliderProps> = (Props: SliderProps) => {
                         <Slider 
                             min={0}
                             max={ConfigModes[Props.format].sliderMax}
-                            value={getRoundedValue(step, Props.value)}
+                            value={getRoundedValue(step, Props.cutoffValue)}
                             step={step}
                             orientation="horizontal"
                             onChangeComplete={Props.onValueChange}
