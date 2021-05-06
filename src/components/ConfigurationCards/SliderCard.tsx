@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react"
+import { FunctionComponent } from "react"
 import Slider from "react-rangeslider"
 import { toTitleCase } from '../util'
-import { FormatType, MetricType, SliderProps } from './ConfigurationTypes'
+import { ConfigModes, FormatType, MetricType, SliderProps } from './ConfigurationTypes'
 
-const getSliderCopy = (format: FormatType, metric: MetricType) => {
+const getSliderLabel = (format: FormatType, metric: MetricType) => {
     switch (format) {
         case 'average':
             return "Minimum SNR"
@@ -16,32 +16,6 @@ const getSliderCopy = (format: FormatType, metric: MetricType) => {
     }
 }
 
-const getSliderStep = (format: FormatType) => {
-    switch (format) {
-        case 'average':
-            return 1
-        case 'count':
-            return 0.05
-        case 'cpu':
-            return 5
-        default:
-            throw new Error('Unsupported slider format in getSliderStep().')
-    }
-}
-
-const getSliderMax = (format: FormatType) => {
-    switch (format) {
-        case 'average':
-            return 50
-        case 'count':
-            return 1
-        case 'cpu':
-            return 1000
-        default:
-            throw new Error('Unsupported slider format in getSliderMax().')
-    }
-}
-
 const getRoundedValue = (step: number, value: number) => {
     const quantizedToStepSize = Math.round(value / step) * step
     return Math.round(quantizedToStepSize * 100) / 100
@@ -50,13 +24,13 @@ const getRoundedValue = (step: number, value: number) => {
 
 const SliderCard: FunctionComponent<SliderProps> = (Props: SliderProps) => {
     const extraClass = Props.useColumnFormat ? 'card__std-col' : 'card__std'
-    const step = getSliderStep(Props.format)
+    const step = ConfigModes[Props.format].sliderStep
     return (
         <div className={`card ${extraClass}`}>
             <div className="content">
                 <div className="card__label">
                     <p>
-                        {getSliderCopy(Props.format, Props.metric)}: <strong>{Props.value}</strong>
+                        {getSliderLabel(Props.format, Props.metric)}: <strong>{Props.value}</strong>
                     </p>
                 </div>
                 <div className="card__footer">
@@ -64,9 +38,9 @@ const SliderCard: FunctionComponent<SliderProps> = (Props: SliderProps) => {
                     <div className="slider__horizontal">
                         <Slider 
                             min={0}
-                            max={getSliderMax(Props.format)}
+                            max={ConfigModes[Props.format].sliderMax}
                             value={getRoundedValue(step, Props.value)}
-                            step={getSliderStep(Props.format)}
+                            step={step}
                             orientation="horizontal"
                             onChangeComplete={Props.onValueChange}
                         />
