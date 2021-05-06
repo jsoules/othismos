@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react"
 import Slider from "react-rangeslider"
 import { toTitleCase } from '../util'
-import { MetricType, SliderFormat, SliderProps } from './ConfigurationTypes'
+import { FormatType, MetricType, SliderProps } from './ConfigurationTypes'
 
-const getSliderCopy = (format: SliderFormat, metric: MetricType) => {
+const getSliderCopy = (format: FormatType, metric: MetricType) => {
     switch (format) {
         case 'average':
             return "Minimum SNR"
@@ -16,7 +16,7 @@ const getSliderCopy = (format: SliderFormat, metric: MetricType) => {
     }
 }
 
-const getSliderStep = (format: SliderFormat) => {
+const getSliderStep = (format: FormatType) => {
     switch (format) {
         case 'average':
             return 1
@@ -29,7 +29,7 @@ const getSliderStep = (format: SliderFormat) => {
     }
 }
 
-const getSliderMax = (format: SliderFormat) => {
+const getSliderMax = (format: FormatType) => {
     switch (format) {
         case 'average':
             return 50
