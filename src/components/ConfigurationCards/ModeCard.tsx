@@ -9,7 +9,7 @@ const modes = {
 }
 
 const ModeCard: FunctionComponent<ModeProps> = (Props: ModeProps) => {
-    const extraClass = Props.useColumnFormat ? 'card__st-col card__std-top' : 'card__std'
+    const extraClass = Props.useColumnFormat ? 'card__std-col card__std-top' : 'card__std'
     const modesList: Array<FormatType> = ['average', 'count']
     if (Props.showCPU) {
         modesList.push('cpu')

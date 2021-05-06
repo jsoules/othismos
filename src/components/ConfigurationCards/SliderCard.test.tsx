@@ -28,7 +28,32 @@ describe('Basic rendering tests', () => {
         )
         const accuracyText = screen.getByText(/Accuracy/)
         expect(accuracyText).toBeInTheDocument()
-    })    
+    })
+
+    test("Column format styles applied when flagged on", () => {
+        const { container } = render(
+            <SliderCard
+                format={'count'}
+                metric={'accuracy'}
+                value={8}
+                useColumnFormat={true}
+                onValueChange={() => {}}
+            />
+        )
+        expect(container.firstChild).toHaveClass('card card__std-col', {exact: true})
+    })
+
+    test("Column format styles not applied when flagged off", () => {
+        const { container } = render(
+            <SliderCard
+                format={'count'}
+                metric={'accuracy'}
+                value={8}
+                onValueChange={() => {}}
+            />
+        )
+        expect(container.firstChild).toHaveClass('card card__std', {exact: true})
+    })
 })
 
 // TODO: Figure out how to use React Testing Library to confirm that
