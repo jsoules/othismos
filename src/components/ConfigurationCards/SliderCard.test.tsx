@@ -1,15 +1,12 @@
 import { render, screen } from '@testing-library/react'
+import { basicConfig } from '../../sampleData/HeatmapConfigTestData'
+import { FormatType } from './ConfigurationTypes'
 import SliderCard from './SliderCard'
 
 describe('Basic rendering tests', () => {
     test("Default values render correctly", () => {
         render(
-            <SliderCard
-                format={'average'}
-                metric={'accuracy'}
-                cutoffValue={8}
-                onValueChange={() => {}}
-            />
+            <SliderCard {...basicConfig}/>
         )
         const accuracyText = screen.getByText(/SNR/)
         expect(accuracyText).toBeInTheDocument()
@@ -18,39 +15,26 @@ describe('Basic rendering tests', () => {
     })
     
     it("Properly title-cases metric name", () => {
+        const countFormat = {...basicConfig, format: 'count' as FormatType}
         render(
-            <SliderCard
-                format={'count'}
-                metric={'accuracy'}
-                cutoffValue={8}
-                onValueChange={() => {}}
-            />
+            <SliderCard {...countFormat} />
         )
         const accuracyText = screen.getByText(/Accuracy/)
         expect(accuracyText).toBeInTheDocument()
     })
 
     test("Column format styles applied when flagged on", () => {
+        const confirmColumnOn = {...basicConfig, useColumnFormat: true}
         const { container } = render(
-            <SliderCard
-                format={'count'}
-                metric={'accuracy'}
-                cutoffValue={8}
-                useColumnFormat={true}
-                onValueChange={() => {}}
-            />
+            <SliderCard {...confirmColumnOn}/>
         )
         expect(container.firstChild).toHaveClass('card card__std-col', {exact: true})
     })
 
     test("Column format styles not applied when flagged off", () => {
+        expect(basicConfig.useColumnFormat).toBeFalsy()
         const { container } = render(
-            <SliderCard
-                format={'count'}
-                metric={'accuracy'}
-                cutoffValue={8}
-                onValueChange={() => {}}
-            />
+            <SliderCard {...basicConfig}/>
         )
         expect(container.firstChild).toHaveClass('card card__std', {exact: true})
     })
