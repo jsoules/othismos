@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -23,6 +24,8 @@
     "react-rangeslider": "^2.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^9.1.1",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -33,7 +36,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "yarn test --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": [

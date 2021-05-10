@@ -13,7 +13,7 @@ export interface SliderProps {
     metric: MetricType
     cutoffValue: number
     useColumnFormat?: boolean
-    onValueChange: () => void
+    onValueChange: (v: number) => void
 }
 
 export interface MetricProps {
@@ -21,14 +21,14 @@ export interface MetricProps {
     imputeMissingValues?: boolean
     useColumnFormat?: boolean
     onImputeMissingValuesChange: (value: boolean) => void
-    onMetricChange: () => void
+    onMetricChange: (v: string) => void
 }
 
 export interface ModeProps {
     format: FormatType
     showCPU?: boolean
     useColumnFormat?: boolean
-    onFormatChange: (e: string) => void
+    onFormatChange: (v: string) => void
 }
 
 // Will be useful for the control panel component
