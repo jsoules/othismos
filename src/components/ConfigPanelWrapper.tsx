@@ -1,4 +1,5 @@
 import { FunctionComponent, useState } from 'react'
+import { Form } from 'react-bootstrap'
 import ConfigurationPanel from './ConfigurationCards/ConfigurationPanel'
 import { FormatType, MetricType } from './ConfigurationCards/ConfigurationTypes'
 
@@ -19,6 +20,7 @@ const ConfigPanelWrapper: FunctionComponent<MyProps> = (Props: MyProps) => {
     const [cutoffValue, setCutoffValue] = useState<number>(8)
     const [imputeMissingValues, setImputeMissingValues] = useState<boolean>(true)
     const [cutoffs, setCutoffs] = useState<CutoffList>(defaultCutoffs)
+    const [useColumnFormat, setUseColumnFormat] = useState<boolean>(false)
 
     const handleFormatChange = (newFormat: string) => {
         const newCutoffs = {...cutoffs}
@@ -29,9 +31,23 @@ const ConfigPanelWrapper: FunctionComponent<MyProps> = (Props: MyProps) => {
         setFormat(newFormat as FormatType)
     }
 
-    const useColumnFormat= false
     return (
         <div>
+            <Form.Check
+                type="checkbox"
+                id="column-row-control"
+                inline
+                className="card-label-form"
+            >
+                <Form.Check.Input
+                    type="checkbox"
+                    checked={useColumnFormat}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUseColumnFormat(e.target.checked)}
+                />
+                <Form.Check.Label className="input__label">
+                    Use column format
+                </Form.Check.Label>
+            </Form.Check>
             <ConfigurationPanel
                 format={format}
                 metric={metric}
