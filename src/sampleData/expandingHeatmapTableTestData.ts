@@ -1,5 +1,5 @@
-import { ExpandingHeatmapTableRowType } from "../components/ExpandingHeatmapTableRow"
 import * as d3 from "d3"
+import { ExpandingHeatmapTableRowType } from "../components/ExpandingHeatmapTableRow"
 import mockStudies from "./mockStudies"
 
 const sorters = [
@@ -54,7 +54,7 @@ export const expandingHeatmapTableSampleHeader: ExpandingHeatmapTableRowType = {
   // index: -1
 }
 
-const col1 = "rgb(138, 191, 221)"
+// const col1 = "rgb(138, 191, 221)"
 
 export const expandingHeatmapTableSampleRows: ExpandingHeatmapTableRowType[] = [
   ...mockStudies.map((STUDY) => ({
