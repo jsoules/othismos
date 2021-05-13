@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react'
-// import ReactMarkdown from 'react-markdown'
-// import MathJax from 'react-mathjax'
-// import RemarkMathPlugin from 'remark-math'
 import MarkdownRenderKatex from './MarkdownRenderKatex'
 import mdPath from './MetricsDescription.md'
 
@@ -17,24 +14,8 @@ const MetricsDescription = () => {
         })
     })
 
-    // const rmdConfig = {
-    //     plugins: [ RemarkMathPlugin ],
-    //     renderers: {
-    //         math: (props: any) => <MathJax.Node formula={props.value}/>,
-    //         inlineMath: (props: any) => <MathJax.Node inline formula={props.value} />
-    //     },
-    //     children: md
-    // }
     return(
-        <div>
-            {/* <div>
-                <p>Raw output from ReactMarkdown between the rules:</p>
-                <hr />
-                    <ReactMarkdown {...rmdConfig} />
-                <hr />
-            </div> */}
-            <MarkdownRenderKatex children={md} />
-        </div>
+        <MarkdownRenderKatex children={md} />
     )
 }
 

@@ -1,8 +1,6 @@
-// import React from "react"
 import { BrowserRouter } from "react-router-dom"
 import "./App.css"
 import ConfigPanelWrapper from "./components/ConfigPanelWrapper"
-// import { FormatType } from './components/ConfigurationCards/ConfigurationTypes'
 import ExpandingHeatmapTable from "./components/ExpandingHeatmapTable"
 import MetricsDescription from "./components/MetricsDescription/MetricsDescription"
 import "./index.css"
