@@ -58,10 +58,8 @@ function App() {
                     </div>
                 </div>
                 <hr />
-                <div>
-                    <p>This is the Algorithms section:</p>
-                    <Algorithms algorithms={algosJson.algorithms as AlgorithmEntry[]} />
-                </div>
+                <p>This is the Algorithms section:</p>
+                <Algorithms algorithms={algosJson.algorithms as AlgorithmEntry[]} />
             </BrowserRouter>
             {/* <div>
                 <hr />
