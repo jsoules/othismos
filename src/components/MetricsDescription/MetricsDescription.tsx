@@ -8,10 +8,7 @@ const MetricsDescription = () => {
     useEffect(() => {
         fetch(mdPath)
         .then((res) => res.text())
-        .then((text) =>  {
-            console.log(`Got text ${text}`)
-            setMd(text)
-        })
+        .then((text) => setMd(text))
     })
 
     return(
