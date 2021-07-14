@@ -3,4 +3,6 @@ declare module '*.md' {
     export default content
 }
 
+declare module 'react-modal-image'
+
 declare module 'react-katex'

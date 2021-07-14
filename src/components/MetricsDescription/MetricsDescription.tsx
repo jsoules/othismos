@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import MarkdownRenderKatex from './MarkdownRenderKatex'
+import MarkdownRenderKatex from '../Shared/MarkdownRenderKatex'
 import mdPath from './MetricsDescription.md'
 
 

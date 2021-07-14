@@ -2,6 +2,7 @@ import React from "react"
 import { Card, Container } from "react-bootstrap"
 import { BrowserRouter } from "react-router-dom"
 import "./App.css"
+import About from "./components/About/About"
 import Algorithms, { AlgorithmEntry } from "./components/Algorithms/Algorithms"
 // import ConfigPanelWrapper from "./components/ConfigPanelWrapper"
 import ExpandingHeatmapTable from "./components/ExpandingHeatmapTable"
@@ -38,13 +39,15 @@ function App() {
             </div>
         </div>
         <div className="wrapper">
-            <hr />
             {/* <div>
                 <hr />
                 <ConfigPanelWrapper />
                 <hr />
             </div> */}
             <BrowserRouter>
+                <hr />
+                    <About />
+                <hr />
                 <div>
                     <p>This is what a fetch failure should look like:</p>
                     <div className="page__body">
