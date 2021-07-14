@@ -46,24 +46,24 @@ function App() {
                 <ConfigPanelWrapper />
                 <hr />
             </div> */}
-                <hr />
-                    <About />
-                <hr />
-                <div>
-                    <p>This is what a fetch failure should look like:</p>
-                    <div className="page__body">
-                        <Container className="container__heatmap">
-                            <Card>
-                                <Card.Body>
-                                    <Preloader fetchFailure={true} />
-                                </Card.Body>
-                            </Card>
-                        </Container>
-                    </div>
+            <hr />
+                <About />
+            <hr />
+            <div>
+                <p>This is what a fetch failure should look like:</p>
+                <div className="page__body">
+                    <Container className="container__heatmap">
+                        <Card>
+                            <Card.Body>
+                                <Preloader fetchFailure={true} />
+                            </Card.Body>
+                        </Card>
+                    </Container>
                 </div>
-                <hr />
-                <p>This is the Algorithms section:</p>
-                <Algorithms algorithms={algosJson.algorithms as AlgorithmEntry[]} />
+            </div>
+            <hr />
+            <p>This is the Algorithms section:</p>
+            <Algorithms algorithms={algosJson.algorithms as AlgorithmEntry[]} />
             {/* <div>
                 <hr />
                 <p>Row configuration</p>

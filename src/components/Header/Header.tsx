@@ -44,10 +44,10 @@ const Header = () => {
                 <LinkContainer exact to="/">
                     <Navbar.Brand className="navbar__left">
                         <img
-                        alt="spikeforest logo"
-                        src={logo}
-                        height="48"
-                        className="d-inline-block align-top"
+                            alt="spikeforest logo"
+                            src={logo}
+                            height="48"
+                            className="d-inline-block align-top"
                         />
                     </Navbar.Brand>
                 </LinkContainer>
