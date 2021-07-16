@@ -25,7 +25,7 @@ export interface StudySet {
     name: string,
     description: string,
     studies: Study[],
-    __v: number
+    __v?: number
 }
 
 export type Nullable<T> = T extends null | undefined ? never: T
