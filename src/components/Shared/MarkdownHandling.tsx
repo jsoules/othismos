@@ -36,7 +36,11 @@ export type ContentHook = (Section: Section) => JSX.Element | undefined
 // if you just want to render the Markdown-based cards differently, use a ContentHook
 // function that can render the appropriate changes from the Section object (perhaps
 // by looking at the Flavor field, for example).
-export type CopyHook = { Copy: Copy, ContentHook: ContentHook, AdditionalContent?: JSX.Element }
+export type CopyHook = {
+    Copy: Copy,
+    ContentHook: ContentHook,
+    AdditionalContent?: JSX.Element
+}
 
 export type SectionHook = { Section: Section, ContentHook: ContentHook }
 
@@ -131,6 +135,8 @@ export const PageCopy: FunctionComponent<CopyHook> = (Props: CopyHook) => {
                 </Row>
                 { Props.Copy.Sections.map(item => PageCard({Section: item, ContentHook: Props.ContentHook})) }
                 { Props.AdditionalContent }
+                {/* Handles overflow from the bottom margin: */}
+                <div style={{ margin: "8rem 0" }} />
             </Container>
         </Col>
     )
