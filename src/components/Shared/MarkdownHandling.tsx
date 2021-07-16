@@ -83,9 +83,11 @@ export const parseMarkdownToContentCards = (rawMd: string): Copy => {
     // the header and the second element is the (Markdown) section content.
 
     // So finally let's build some Sections. We'll use any parenthesized content
-    // in the section header as the sidebar label; if none, we'll use the exact header.
+    // in the section header as the sidebar label--so e.g. ## My Heading (Sidebar Label)
+    // will appear as "My Heading" in the main page body and "Sidebar Label" in the sidebar.
+    // If the section in parens is omitted, we'll use the same heading for both.
     // The corresponding item ID for the tag system should be the sidebar label,
-    // normalized to lowercase and with spaces removed.
+    // lower-cased & with spaces removed.
     pairs.forEach((pair) => {
         if (pair.length > 2 || !pair[0] || !pair[1]){
             console.log(`Error in pair: ${pair}. Skipping...`)
