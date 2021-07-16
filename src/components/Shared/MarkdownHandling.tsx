@@ -18,8 +18,24 @@ export type Section = {
     Flavor?: 'static' | 'list' | 'preloader' | 'special'
 }
 
+// The "ContentHook" provides the capacity to apply modifications or special handling
+// for some Sections in the page copy. A canonical example is the About page, where it
+// is used to insert a specific card for the "Overview" section that includes lightboxed images.
+// This hook takes a Section object and should return any desired custom card content.
+// If "undefined" is returned, the default is to just run the Section content field through
+// ReactMarkdown.
+// This should be passed through to the PageCopy function, but only gets called at the
+// individual Section/Card layout level.
 export type ContentHook = (Section: Section) => JSX.Element | undefined
 
+// "AdditionalContent" is any custom content that should appear after the static cards
+// (derived from the input Markdown). Canonical example is the Recordings page, where
+// we have a variable list of Study Sets (each derived from live-queried API data)
+// that comes after the static (Markdown) preface.
+// This is usually expected to be page content that derives from a non-Markdown source;
+// if you just want to render the Markdown-based cards differently, use a ContentHook
+// function that can render the appropriate changes from the Section object (perhaps
+// by looking at the Flavor field, for example).
 export type CopyHook = { Copy: Copy, ContentHook: ContentHook, AdditionalContent?: JSX.Element }
 
 export type SectionHook = { Section: Section, ContentHook: ContentHook }
